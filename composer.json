@@ -1,0 +1,30 @@
+{
+  "name": "6dreams/openapi-parser",
+  "description": "Provides functionality to parse openapi and save it back.",
+  "type": "library",
+  "license": "MIT",
+  "prefer-stable": true,
+  "minimum-stability": "dev",
+  "require": {
+    "php": ">=7.4"
+  },
+  "authors": [
+    {
+      "name": ".fry",
+      "email": "fry@6dreams.net"
+    }
+  ],
+  "require-dev": {
+    "phpunit/phpunit": "9.3.8"
+  },
+  "autoload": {
+    "psr-4": {
+      "SixDreams\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "SixDreams\\Tests\\": "tests/"
+    }
+  }
+}
