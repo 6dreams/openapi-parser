@@ -24,7 +24,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "SixDreams\\OpenAPI\\Tests\\": "tests/"
+      "SixDreams\\OpenApi\\Tests\\": "tests/"
     }
   }
 }

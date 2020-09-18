@@ -18,6 +18,12 @@ use SixDreams\OpenApi\DocumentProvider\DocumentFileLoaderInterface;
  */
 class DecodeDocumentException extends ProviderException
 {
+    /**
+     * Constructor.
+     *
+     * @param string $name
+     * @param string $message
+     */
     public function __construct(string $name, string $message)
     {
         parent::__construct(\sprintf('Cannot decode document "%s": %s!', $name, $message));
