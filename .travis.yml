@@ -8,7 +8,7 @@ cache:
 
 before_install:
     - phpenv config-rm xdebug.ini || true
-    - composer require satooshi/php-coveralls:dev-master
+    - composer require php-coveralls/php-coveralls:dev-master
 
 install:
     - travis_retry composer -n install --prefer-dist
