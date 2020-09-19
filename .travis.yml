@@ -8,12 +8,16 @@ cache:
 
 before_install:
     - phpenv config-rm xdebug.ini || true
+    - composer require satooshi/php-coveralls:dev-master
 
 install:
     - travis_retry composer -n install --prefer-dist
 
 script:
-    - ./vendor/bin/phpunit --configuration phpunit.build.xml
+    - ./vendor/bin/phpunit --configuration phpunit.build.xml --coverage-clover ./tests/logs/clover.xml
+
+after_script:
+    - php vendor/bin/coveralls -v
 
 jobs:
     include:
