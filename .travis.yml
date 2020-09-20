@@ -8,7 +8,7 @@ cache:
 
 before_install:
     - phpenv config-rm xdebug.ini || true
-    - composer require php-coveralls/php-coveralls:2.2.0
+    - composer require --dev php-coveralls/php-coveralls:2.2.0
 
 install:
     - travis_retry composer -n install --prefer-dist
@@ -17,7 +17,7 @@ script:
     - ./vendor/bin/phpunit --configuration phpunit.build.xml --coverage-clover ./tests/logs/clover.xml
 
 after_script:
-    - php vendor/bin/coveralls -v
+    - php vendor/bin/php-coveralls -v
 
 jobs:
     include:
