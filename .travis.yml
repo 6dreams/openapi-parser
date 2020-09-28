@@ -7,7 +7,7 @@ cache:
         - $HOME/.composer/cache
 
 before_install:
-    - phpenv config-rm xdebug.ini || true
+    - pecl install pcov
     - composer require --dev php-coveralls/php-coveralls:2.2.0
 
 install:

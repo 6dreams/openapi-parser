@@ -28,11 +28,9 @@ abstract class AbstractFileLoader implements DocumentFileInterface
      */
     protected function loadFile(string $name): string
     {
-        if (!\file_exists($name)) {
-            throw new ReadFileException($name, 'not exists');
-        }
         try {
-            if (!($content = \file_get_contents($name))) {
+            /** @noinspection PhpUsageOfSilenceOperatorInspection */
+            if (false === ($content = @\file_get_contents($name))) {
                 throw new ReadFileException($name, (\error_get_last() ?? [])['message'] ?? 'unknown error');
             }
 
