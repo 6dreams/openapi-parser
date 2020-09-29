@@ -43,7 +43,7 @@ class YamlFileLoaderTest extends AbstractFileLoaderTest
         self::assertEquals(
             ['test' => 'yes'],
             (new YamlFileLoader())
-                ->load($this->createDocument(': "', 'err.yml'))
+                ->load($this->createDocument('*: "', 'err.yml'))
         );
     }
 
