@@ -12,24 +12,23 @@ declare(strict_types = 1);
 namespace SixDreams\OpenApi\Tests\DocumentProvider\File;
 
 use PHPUnit\Framework\TestCase;
-use SixDreams\OpenApi\DocumentProvider\DocumentFileInterface;
-use SixDreams\OpenApi\DocumentProvider\File\JsonFile;
+use SixDreams\OpenApi\DocumentProvider\File\YamlFile;
 
 /**
- * Tests {@see JsonFile}.
+ * Test for {@see YamlFile}.
  */
-class JsonFileTest extends TestCase
+class YamlFileTest extends TestCase
 {
     /**
-     * Test for {@see DocumentFileInterface::getName()}.
+     * Test for {@see YamlFile::getName()}.
      */
     public function testGetType(): void
     {
-        self::assertEquals(JsonFile::TYPE, (new JsonFile('', ''))->getType());
+        self::assertEquals(YamlFile::TYPE, (new YamlFile('', ''))->getType());
     }
 
     /**
-     * Test for {@see JsonFile::getName()}.
+     * Test for {@see YamlFile::getName()}.
      *
      * @dataProvider getNameProvider().
      *
@@ -38,7 +37,7 @@ class JsonFileTest extends TestCase
      */
     public function testGetName(string $excepted, string $name): void
     {
-        self::assertEquals($excepted, (new JsonFile('', $name))->getName());
+        self::assertEquals($excepted, (new YamlFile('', $name))->getName());
     }
 
     /**
@@ -49,8 +48,8 @@ class JsonFileTest extends TestCase
     public function getNameProvider(): array
     {
         return [
-            ['file.json', 'file.json'],
-            ['.json', '.json'],
+            ['file.yml', 'file.yml'],
+            ['.yaml', '.yaml'],
             ['', '']
         ];
     }

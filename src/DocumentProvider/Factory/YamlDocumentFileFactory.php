@@ -13,23 +13,25 @@ namespace SixDreams\OpenApi\DocumentProvider\Factory;
 
 use SixDreams\OpenApi\DocumentProvider\DocumentFileFactoryInterface;
 use SixDreams\OpenApi\DocumentProvider\DocumentFileInterface;
-use SixDreams\OpenApi\DocumentProvider\File\JsonFile;
+use SixDreams\OpenApi\DocumentProvider\File\YamlFile;
 use SixDreams\OpenApi\Utils\NameUtils;
 
 /**
- * Factory helping create {@see JsonFile} from it's path.
+ * Factory for documents looking like yaml file.
  */
-class JsonDocumentFileFactory implements DocumentFileFactoryInterface
+class YamlDocumentFileFactory implements DocumentFileFactoryInterface
 {
+    private const SUPPORTED = ['yaml' => true, 'yml' => true];
+
     /**
      * @inheritdoc
      */
     public function create(string $root, string $name): ?DocumentFileInterface
     {
-        if (JsonFile::TYPE !== NameUtils::getExtension($name)) {
+        if (!(self::SUPPORTED[NameUtils::getExtension($name)] ?? false)) {
             return null;
         }
 
-        return new JsonFile($root, $name);
+        return new YamlFile($root, $name);
     }
 }

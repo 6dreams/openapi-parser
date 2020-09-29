@@ -13,14 +13,15 @@ namespace SixDreams\OpenApi\Tests\DocumentProvider\Factory;
 
 use PHPUnit\Framework\TestCase;
 use SixDreams\OpenApi\DocumentProvider\DocumentFileInterface;
-use SixDreams\OpenApi\DocumentProvider\Factory\JsonDocumentFileFactory;
-use SixDreams\OpenApi\DocumentProvider\File\JsonFile;
+use SixDreams\OpenApi\DocumentProvider\Factory\YamlDocumentFileFactory;
+use SixDreams\OpenApi\DocumentProvider\File\YamlFile;
 
 /**
- * Tests {@see JsonDocumentFileFactory}.
+ * Test for {@see YamlDocumentFileFactory}.
  */
-class JsonDocumentFileFactoryTest extends TestCase
+class YamlDocumentFileFactoryTest extends TestCase
 {
+
     /**
      * Tests {@see JsonDocumentFileFactory::create()}.
      *
@@ -31,7 +32,7 @@ class JsonDocumentFileFactoryTest extends TestCase
      */
     public function testCreate(?DocumentFileInterface $excepted, string ...$args): void
     {
-        self::assertEquals($excepted, (new JsonDocumentFileFactory())->create(...$args));
+        self::assertEquals($excepted, (new YamlDocumentFileFactory())->create(...$args));
     }
 
     /**
@@ -42,9 +43,11 @@ class JsonDocumentFileFactoryTest extends TestCase
     public function createProvider(): array
     {
         return [
-            [new JsonFile('', 'file.json'), '', 'file.json'],
-            [new JsonFile('a/b/c', 'file.json'), 'a/b/c', 'file.json'],
-            [null, '', 'file.xml']
+            [new YamlFile('', 'file.yaml'), '', 'file.yaml'],
+            [new YamlFile('a/b/c', 'file.yaml'), 'a/b/c', 'file.yaml'],
+            [new YamlFile('http://host/a/b/c', 'file.yml'), 'http://host/a/b/c', 'file.yml'],
+            [null, '', 'file.xml'],
+            [null, '', 'file.json']
         ];
     }
 }

@@ -12,17 +12,17 @@ declare(strict_types = 1);
 namespace SixDreams\OpenApi\DocumentProvider\File;
 
 /**
- * Base JSON file on disk.
+ * Basic yaml file on disk or network.
  */
-class JsonFile extends AbstractFileLoader
+class YamlFile extends AbstractFileLoader
 {
-    public const TYPE = 'json';
+    public const TYPE = 'yaml';
 
-    /** File name. */
-    private string $name;
-
-    /** Project root path. */
+    /** Root path. */
     private string $root;
+
+    /** Relative file name. */
+    private string $name;
 
     /**
      * Constructor.
@@ -32,16 +32,8 @@ class JsonFile extends AbstractFileLoader
      */
     public function __construct(string $root, string $name)
     {
-        $this->name = $name;
         $this->root = $root;
-    }
-
-    /**
-     * @inheritdoc
-     */
-    public function getType(): string
-    {
-        return self::TYPE;
+        $this->name = $name;
     }
 
     /**
@@ -55,6 +47,11 @@ class JsonFile extends AbstractFileLoader
     /**
      * @inheritdoc
      */
+    public function getType(): string
+    {
+        return self::TYPE;
+    }
+
     public function getContent(): string
     {
         return $this->loadFile($this->root . $this->name);

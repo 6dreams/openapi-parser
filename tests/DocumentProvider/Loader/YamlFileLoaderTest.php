@@ -13,28 +13,28 @@ namespace SixDreams\OpenApi\Tests\DocumentProvider\Loader;
 
 use SixDreams\OpenApi\DocumentProvider\DocumentFileInterface;
 use SixDreams\OpenApi\DocumentProvider\Exception\DecodeDocumentException;
-use SixDreams\OpenApi\DocumentProvider\File\JsonFile;
-use SixDreams\OpenApi\DocumentProvider\Loader\JsonFileLoader;
+use SixDreams\OpenApi\DocumentProvider\File\YamlFile;
+use SixDreams\OpenApi\DocumentProvider\Loader\YamlFileLoader;
 
 /**
- * Tests {@see JsonFileLoader}.
+ * Tests for {@see YamlFileLoader}.
  */
-class JsonFileLoaderTest extends AbstractFileLoaderTest
+class YamlFileLoaderTest extends AbstractFileLoaderTest
 {
     /**
-     * Tests {@see JsonFileLoader::load()} for successful decoding document.
+     * Tests {@see YamlFileLoader::load()} for successful decoding document.
      */
     public function testDecode(): void
     {
         self::assertEquals(
             ['test' => 'yes'],
-            (new JsonFileLoader())
-                ->load($this->createDocument('{"test":"yes"}'))
+            (new YamlFileLoader())
+                ->load($this->createDocument("test: 'yes'"))
         );
     }
 
     /**
-     * Tests {@see JsonFileLoader::load()} while loading invalid json file.
+     * Tests {@see YamlFileLoader::load()} while loading invalid yaml document.
      */
     public function testInvalid(): void
     {
@@ -42,13 +42,14 @@ class JsonFileLoaderTest extends AbstractFileLoaderTest
 
         self::assertEquals(
             ['test' => 'yes'],
-            (new JsonFileLoader())
-                ->load($this->createDocument('', 'err.json'))
+            (new YamlFileLoader())
+                ->load($this->createDocument(': "', 'err.yml'))
         );
     }
 
+
     /**
-     * Tests {@see JsonFileLoader::supports()}.
+     * Tests {@see YamlFileLoader::supports()}.
      *
      * @dataProvider supportProvider().
      *
@@ -63,7 +64,7 @@ class JsonFileLoaderTest extends AbstractFileLoaderTest
             ->method('getType')
             ->willReturn($format);
 
-        self::assertEquals($excepted, (new JsonFileLoader())->supports($document));
+        self::assertEquals($excepted, (new YamlFileLoader())->supports($document));
     }
 
     /**
@@ -74,7 +75,7 @@ class JsonFileLoaderTest extends AbstractFileLoaderTest
     public function supportProvider(): array
     {
         return [
-            [true, JsonFile::TYPE],
+            [true, YamlFile::TYPE],
             [false, 'jija'],
             [false, '']
         ];
