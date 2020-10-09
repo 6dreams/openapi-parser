@@ -33,6 +33,32 @@ class NameUtilsTest extends TestCase
     }
 
     /**
+     * Test for {@see NameUtils::getPath()}.
+     *
+     * @dataProvider getPathProvider().
+     *
+     * @param string $excepted
+     * @param string $name
+     */
+    public function testGetPath(string $excepted, string $name): void
+    {
+        self::assertEquals($excepted, NameUtils::getPath($name));
+    }
+
+    /**
+     * Test for {@see NameUtils::getName()}.
+     *
+     * @dataProvider getNameProvider().
+     *
+     * @param string $excepted
+     * @param string $name
+     */
+    public function testGetName(string $excepted, string $name): void
+    {
+        self::assertEquals($excepted, NameUtils::getName($name));
+    }
+
+    /**
      * Data provider for {@see testGetExtension()}.
      *
      * @return string[][]
@@ -45,6 +71,34 @@ class NameUtilsTest extends TestCase
             ['', 'file/name'],
             ['', 'filename'],
             ['', '/some/shit.dir/file']
+        ];
+    }
+
+    /**
+     * Data provider for {@see testGetPath()}.
+     *
+     * @return string[][]
+     */
+    public function getPathProvider(): array
+    {
+        return [
+            ['path', 'path'],
+            ['/a/b/', '/a/b/'],
+            ['a/', 'a/b']
+        ];
+    }
+
+    /**
+     * Data provider for {@see testGetName()}.
+     *
+     * @return string[][]
+     */
+    public function getNameProvider(): array
+    {
+        return [
+            ['file.json', 'http://site.com/file.json'],
+            ['file.yml', '/home/user/file.yml'],
+            ['file', 'file']
         ];
     }
 }

@@ -12,7 +12,7 @@ declare(strict_types = 1);
 namespace SixDreams\OpenApi\Schema;
 
 /**
- * One of node types. Used in nodes that have any child nodes.
+ * One of node types. Used in nodes that have child nodes.
  */
 abstract class NodeContainer extends AbstractNode
 {
@@ -30,5 +30,20 @@ abstract class NodeContainer extends AbstractNode
     public function getNodes(): array
     {
         return $this->nodes;
+    }
+
+    /**
+     * Adds new child node with selected name.
+     *
+     * @param string        $name
+     * @param NodeInterface $node
+     *
+     * @return NodeInterface|static
+     */
+    public function addNode(string $name, NodeInterface $node): NodeInterface
+    {
+        $this->nodes[$name] = $node;
+
+        return $this;
     }
 }

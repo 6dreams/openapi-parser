@@ -20,11 +20,11 @@ class DocumentNode extends NodeContainer
     protected ?string $version;
 
     /**
-     * @inheritdoc
+     * Constructor.
      */
-    public function getName(): string
+    public function __construct()
     {
-        return '';
+        parent::__construct('');
     }
 
     /**

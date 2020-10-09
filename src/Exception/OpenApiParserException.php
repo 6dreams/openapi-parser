@@ -9,13 +9,11 @@ declare(strict_types = 1);
  * file that was distributed with this source code.
  */
 
-namespace SixDreams\OpenApi\DocumentProvider\Exception;
-
-use SixDreams\OpenApi\Exception\OpenApiParserException;
+namespace SixDreams\OpenApi\Exception;
 
 /**
- * Base exception class for errors with providing file content.
+ * Generic exception for all OpenAPI parser errors.
  */
-abstract class ProviderException extends OpenApiParserException
+abstract class OpenApiParserException extends \Exception
 {
 }

@@ -25,6 +25,16 @@ abstract class AbstractNode implements NodeInterface
     protected DocumentFileInterface $document;
 
     /**
+     * Constructor.
+     *
+     * @param string $name
+     */
+    public function __construct(string $name)
+    {
+        $this->name = $name;
+    }
+
+    /**
      * @inheritdoc
      */
     public function getName(): string

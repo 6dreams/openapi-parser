@@ -37,4 +37,28 @@ final class NameUtils
 
         return $ext;
     }
+
+    /**
+     * Return path to file in URI.
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    public static function getPath(string $name): string
+    {
+        return \mb_substr($name, 0, ($len = \mb_strrpos($name, \DIRECTORY_SEPARATOR)) ? $len + 1 : \mb_strlen($name));
+    }
+
+    /**
+     * Return file name from URI.
+     *
+     * @param string $name
+     *
+     * @return string
+     */
+    public static function getName(string $name): string
+    {
+        return \mb_substr($name, ($len = \mb_strrpos($name, \DIRECTORY_SEPARATOR)) ? $len + 1 : 0);
+    }
 }

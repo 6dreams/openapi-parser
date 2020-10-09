@@ -9,13 +9,18 @@ declare(strict_types = 1);
  * file that was distributed with this source code.
  */
 
-namespace SixDreams\OpenApi\DocumentProvider\Exception;
-
-use SixDreams\OpenApi\Exception\OpenApiParserException;
+namespace SixDreams\OpenApi\Schema;
 
 /**
- * Base exception class for errors with providing file content.
+ * The object provides metadata about the API.
  */
-abstract class ProviderException extends OpenApiParserException
+class InfoNode extends NodeContainer
 {
+    /**
+     * @inheritdoc
+     */
+    public function getType(): string
+    {
+        return 'info_object';
+    }
 }
